@@ -1,0 +1,21 @@
+{
+  "name": "demo-lambda",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "aws-sdk": "^2.1680.0",
+    "axios": "^1.7.4",
+    "moment": "^2.30.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "serverless-dotenv-plugin": "^6.0.0"
+  }
+}

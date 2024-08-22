@@ -1,0 +1,27 @@
+service: my-external-api-service
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-northeast-1
+  environment:
+    EXTERNAL_API_URL: ${file(./config/${self:provider.stage}.json):EXTERNAL_API_URL}
+    FIWARE_SERVICE: ${file(./config/${self:provider.stage}.json):FIWARE_SERVICE}
+    REQUEST_TRACE_ID: ${file(./config/${self:provider.stage}.json):REQUEST_TRACE_ID}
+    API_KEY: ${file(./config/${self:provider.stage}.json):API_KEY}
+    S3_BUCKET: ${file(./config/${self:provider.stage}.json):S3_BUCKET}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+      Resource: arn:aws:s3:::${file(./config/${self:provider.stage}.json):S3_BUCKET}/*
+
+
+functions:
+  callExternalApi:
+    handler: src/handlers/apiHandler.callExternalApi
+    events:
+      - eventBridge:
+          schedule: rate(1 minute)
+          enabled: true
