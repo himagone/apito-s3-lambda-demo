@@ -193,9 +193,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/my-external-api-service/dev/1724314153689-2024-08-22T08:09:13.689Z/my-external-api-service.zip"
+                "S3Key": "serverless/my-external-api-service/dev/1724387484084-2024-08-23T04:31:24.084Z/my-external-api-service.zip"
               },
-              "Handler": "src/handlers/apiHandler.callExternalApi",
+              "Handler": "src/handlers/apiHandler.handler",
               "Runtime": "nodejs18.x",
               "FunctionName": "my-external-api-service-dev-callExternalApi",
               "MemorySize": 1024,
@@ -220,21 +220,21 @@
               "CallExternalApiLogGroup"
             ]
           },
-          "CallExternalApiLambdaVersion4WwbVCN3fGNdli0qRVQGFpjOTI7AJmGD7fNff5jItk": {
+          "CallExternalApiLambdaVersionkdOLXE8PqForZ5GbrTR5qIV2ex9NTlRzoRcLoMsLn0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CallExternalApiLambdaFunction"
               },
-              "CodeSha256": "Fh08CVaE/GLv3JIfzchXM1Y8eypo4KvEfNxXKaVZhxA="
+              "CodeSha256": "TSnA8Q86sRiTt6cm6AHyBC9zkkq9XJJvqdS5WivUeks="
             }
           },
           "MyexternalapiservicedevcallExternalApirule1EventBridgeRule": {
             "Type": "AWS::Events::Rule",
             "Properties": {
               "Name": "my-external-api-service-dev-callExternalApi-rule-1",
-              "ScheduleExpression": "rate(1 minute)",
+              "ScheduleExpression": "rate(5 minutes)",
               "State": "ENABLED",
               "Targets": [
                 {
@@ -299,7 +299,7 @@
           "CallExternalApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CallExternalApiLambdaVersion4WwbVCN3fGNdli0qRVQGFpjOTI7AJmGD7fNff5jItk"
+              "Ref": "CallExternalApiLambdaVersionkdOLXE8PqForZ5GbrTR5qIV2ex9NTlRzoRcLoMsLn0"
             },
             "Export": {
               "Name": "sls-my-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
@@ -394,11 +394,11 @@
     "pluginsData": {},
     "functions": {
       "callExternalApi": {
-        "handler": "src/handlers/apiHandler.callExternalApi",
+        "handler": "src/handlers/apiHandler.handler",
         "events": [
           {
             "eventBridge": {
-              "schedule": "rate(1 minute)",
+              "schedule": "rate(5 minutes)",
               "enabled": true
             }
           }
@@ -409,7 +409,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CallExternalApiLambdaVersion4WwbVCN3fGNdli0qRVQGFpjOTI7AJmGD7fNff5jItk"
+        "versionLogicalId": "CallExternalApiLambdaVersionkdOLXE8PqForZ5GbrTR5qIV2ex9NTlRzoRcLoMsLn0"
       }
     },
     "configValidationMode": "warn",
@@ -426,10 +426,10 @@
     "appId": null,
     "orgId": null,
     "layers": {},
-    "artifact": "/Users/user/Documents/demo-lambda/.serverless/my-external-api-service.zip"
+    "artifact": "/Users/user/Documents/apito-s3-lambda-demo/.serverless/my-external-api-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/my-external-api-service/dev/1724314153689-2024-08-22T08:09:13.689Z",
+    "artifactDirectoryName": "serverless/my-external-api-service/dev/1724387484084-2024-08-23T04:31:24.084Z",
     "artifact": "my-external-api-service.zip"
   }
 }
