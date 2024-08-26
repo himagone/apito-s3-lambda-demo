@@ -169,18 +169,17 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/my-external-api-service/dev/1724387484084-2024-08-23T04:31:24.084Z/my-external-api-service.zip"
+          "S3Key": "serverless/my-external-api-service/dev/1724637600399-2024-08-26T02:00:00.399Z/my-external-api-service.zip"
         },
         "Handler": "src/handlers/apiHandler.handler",
         "Runtime": "nodejs18.x",
         "FunctionName": "my-external-api-service-dev-callExternalApi",
         "MemorySize": 1024,
-        "Timeout": 6,
+        "Timeout": 300,
         "Environment": {
           "Variables": {
             "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
             "FIWARE_SERVICE": "smartcity_yaizu",
-            "REQUEST_TRACE_ID": "c318b647-72e4-4def-9b73-3d3d0077fc36",
             "API_KEY": "c54a2f8e-a32c-d9f6-7a64-693eb50f0e96",
             "S3_BUCKET": "smartcity-yaizu-test"
           }
@@ -196,14 +195,14 @@
         "CallExternalApiLogGroup"
       ]
     },
-    "CallExternalApiLambdaVersionkdOLXE8PqForZ5GbrTR5qIV2ex9NTlRzoRcLoMsLn0": {
+    "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CallExternalApiLambdaFunction"
         },
-        "CodeSha256": "TSnA8Q86sRiTt6cm6AHyBC9zkkq9XJJvqdS5WivUeks="
+        "CodeSha256": "Pmwfu4qS9L9ekXa2moJho299mBLEwwiAw1uf04d6NIQ="
       }
     },
     "MyexternalapiservicedevcallExternalApirule1EventBridgeRule": {
@@ -278,7 +277,7 @@
     "CallExternalApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CallExternalApiLambdaVersionkdOLXE8PqForZ5GbrTR5qIV2ex9NTlRzoRcLoMsLn0"
+        "Ref": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
       },
       "Export": {
         "Name": "sls-my-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"

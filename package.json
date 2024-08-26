@@ -12,7 +12,8 @@
   "dependencies": {
     "aws-sdk": "^2.1680.0",
     "axios": "^1.7.4",
-    "moment": "^2.30.1"
+    "moment": "^2.30.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",

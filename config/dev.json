@@ -1,7 +1,6 @@
 {
   "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
   "FIWARE_SERVICE": "smartcity_yaizu",
-  "REQUEST_TRACE_ID": "c318b647-72e4-4def-9b73-3d3d0077fc36",
   "API_KEY":"c54a2f8e-a32c-d9f6-7a64-693eb50f0e96",
   "S3_BUCKET": "smartcity-yaizu-test"
 }

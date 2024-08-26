@@ -8,7 +8,6 @@ provider:
   environment:
     EXTERNAL_API_URL: ${file(./config/${self:provider.stage}.json):EXTERNAL_API_URL}
     FIWARE_SERVICE: ${file(./config/${self:provider.stage}.json):FIWARE_SERVICE}
-    REQUEST_TRACE_ID: ${file(./config/${self:provider.stage}.json):REQUEST_TRACE_ID}
     API_KEY: ${file(./config/${self:provider.stage}.json):API_KEY}
     S3_BUCKET: ${file(./config/${self:provider.stage}.json):S3_BUCKET}
   iamRoleStatements:
@@ -25,3 +24,4 @@ functions:
       - eventBridge:
           schedule: rate(5 minutes)
           enabled: true
+    timeout: 300

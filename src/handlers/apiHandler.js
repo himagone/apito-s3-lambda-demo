@@ -1,6 +1,7 @@
 const axios = require('axios');
 const AWS = require('aws-sdk');
 const moment = require('moment');
+const { v4: uuidv4 } = require('uuid');
 const s3 = new AWS.S3();
 const apiTypes = require('../apiTypes.js');
 
@@ -8,20 +9,23 @@ const EXTERNAL_API_URL = process.env.EXTERNAL_API_URL;
 const FIWARE_SERVICE = process.env.FIWARE_SERVICE;
 const API_KEY = process.env.API_KEY;
 const S3_BUCKET = process.env.S3_BUCKET;
-const API_DELAY = 5000;
 
 async function callApiAndSaveToS3(apiType){
+  const requestTraceId = uuidv4();
   const headers = {
     'fiware-service': FIWARE_SERVICE,
     'fiware-servicepath': '/' + apiType.dataname,
-    'x-request-trace-id': process.env.REQUEST_TRACE_ID,
+    'x-request-trace-id': requestTraceId,
     'apikey': API_KEY
   };
   const param = new URLSearchParams({ type: apiType.entityId });
   const requestURL = `${EXTERNAL_API_URL}?${param.toString()}`;
   console.log('Calling'+ requestURL);
   try {
-    const response = await axios.get(requestURL, { headers });
+    const response = await axios.get(requestURL, {
+      headers,
+      timeout: 30000
+    });
     const now = moment();
     const fileName = `${apiType.dataname}/${now.format('YYYY-MM-DD')}/${now.format('HH-mm-ss')}.json`;
 
@@ -40,22 +44,16 @@ async function callApiAndSaveToS3(apiType){
 }
 
 exports.handler = async (event) => {
-  console.log('Received event:', JSON.stringify(event, null, 2));
   const results = [];
   const errors = [];
-
   for (const apiType of apiTypes) {
-    for (const apiType of apiTypes) {
-      try {
-        console.log(`Processing apiType: ${apiType.dataname}`);
-        const result = await callApiAndSaveToS3(apiType);
-        results.push({ apiType: apiType.dataname, status: 'success', data: result });
-      } catch (error) {
-        console.error(`Error processing ${apiType.dataname}:`, error);
-        errors.push({ apiType: apiType.dataname, status: 'error', message: error.message });
-      }
-      // API呼び出し間に遅延を挿入
-      await new Promise(resolve => setTimeout(resolve, API_DELAY));
+    try {
+      console.log(`Processing apiType: ${apiType.dataname}`);
+      const result = await callApiAndSaveToS3(apiType);
+      results.push({ apiType: apiType.dataname, status: 'success', data: result });
+    } catch (error) {
+      console.error(`Error processing ${apiType.dataname}:`, error);
+      errors.push({ apiType: apiType.dataname, status: 'error', message: error.message });
     }
   }
 
