@@ -1,4 +1,4 @@
-module.exports = [
+const apiTypes = [
   {
     dataname: 'EvacuationInformationSediment',
     entityId: 'Place'
@@ -25,7 +25,6 @@ module.exports = [
   },
   {
     dataname: 'BroadcastRadioChildStation',
-    entityId: 'BroadcastRadioChildStation'
   },
   {
     dataname: 'WeatherForecast',
@@ -128,3 +127,5 @@ module.exports = [
     entityId: 'EvacuationShelter'
   }
 ];
+
+module.exports = apiTypes;
