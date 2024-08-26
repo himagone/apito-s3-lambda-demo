@@ -10,6 +10,7 @@ provider:
     FIWARE_SERVICE: ${file(./config/${self:provider.stage}.json):FIWARE_SERVICE}
     API_KEY: ${file(./config/${self:provider.stage}.json):API_KEY}
     S3_BUCKET: ${file(./config/${self:provider.stage}.json):S3_BUCKET}
+    TZ: Asia/Tokyo
   iamRoleStatements:
     - Effect: Allow
       Action:
