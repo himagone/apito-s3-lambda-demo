@@ -1,7 +1,7 @@
 {
   "/Users/user/Documents/git/apito-s3-lambda-demo": {
     "versionSfCore": null,
-    "versionFramework": "4.2.3",
+    "versionFramework": "4.2.4",
     "isWithinCompose": false,
     "isCompose": false,
     "composeOrgName": null,
@@ -21,7 +21,8 @@
                 "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
                 "FIWARE_SERVICE": "smartcity_yaizu",
                 "API_KEY": "<REDACTED>",
-                "S3_BUCKET": "smartcity-yaizu-test"
+                "S3_BUCKET": "smartcity-yaizu-test",
+                "TZ": "Asia/Tokyo"
               },
               "iamRoleStatements": [
                 {
@@ -204,7 +205,7 @@
                         "S3Bucket": {
                           "Ref": "ServerlessDeploymentBucket"
                         },
-                        "S3Key": "serverless/my-external-api-service/dev/1724637600399-2024-08-26T02:00:00.399Z/my-external-api-service.zip"
+                        "S3Key": "serverless/my-external-api-service/dev/1724818555875-2024-08-28T04:15:55.875Z/my-external-api-service.zip"
                       },
                       "Handler": "src/handlers/apiHandler.handler",
                       "Runtime": "nodejs18.x",
@@ -216,7 +217,8 @@
                           "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
                           "FIWARE_SERVICE": "smartcity_yaizu",
                           "API_KEY": "<REDACTED>",
-                          "S3_BUCKET": "smartcity-yaizu-test"
+                          "S3_BUCKET": "smartcity-yaizu-test",
+                          "TZ": "Asia/Tokyo"
                         }
                       },
                       "Role": {
@@ -230,14 +232,14 @@
                       "CallExternalApiLogGroup"
                     ]
                   },
-                  "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug": {
+                  "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "CallExternalApiLambdaFunction"
                       },
-                      "CodeSha256": "Pmwfu4qS9L9ekXa2moJho299mBLEwwiAw1uf04d6NIQ="
+                      "CodeSha256": "7B2tiksd4roydbRmuhzYXJYQx/5+gfhPN1BeabQbOnY="
                     }
                   },
                   "MyexternalapiservicedevcallExternalApirule1EventBridgeRule": {
@@ -312,7 +314,7 @@
                   "CallExternalApiLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
+                      "Ref": "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME"
                     },
                     "Export": {
                       "Name": "sls-my-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
@@ -421,7 +423,7 @@
                 "memory": 1024,
                 "runtime": "nodejs18.x",
                 "vpc": {},
-                "versionLogicalId": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
+                "versionLogicalId": "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME"
               }
             }
           },
@@ -453,7 +455,8 @@
                 "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
                 "FIWARE_SERVICE": "smartcity_yaizu",
                 "API_KEY": "<REDACTED>",
-                "S3_BUCKET": "smartcity-yaizu-test"
+                "S3_BUCKET": "smartcity-yaizu-test",
+                "TZ": "Asia/Tokyo"
               },
               "iamRoleStatements": [
                 {
@@ -636,7 +639,7 @@
                         "S3Bucket": {
                           "Ref": "ServerlessDeploymentBucket"
                         },
-                        "S3Key": "serverless/my-external-api-service/dev/1724637600399-2024-08-26T02:00:00.399Z/my-external-api-service.zip"
+                        "S3Key": "serverless/my-external-api-service/dev/1724818555875-2024-08-28T04:15:55.875Z/my-external-api-service.zip"
                       },
                       "Handler": "src/handlers/apiHandler.handler",
                       "Runtime": "nodejs18.x",
@@ -648,7 +651,8 @@
                           "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
                           "FIWARE_SERVICE": "smartcity_yaizu",
                           "API_KEY": "<REDACTED>",
-                          "S3_BUCKET": "smartcity-yaizu-test"
+                          "S3_BUCKET": "smartcity-yaizu-test",
+                          "TZ": "Asia/Tokyo"
                         }
                       },
                       "Role": {
@@ -662,14 +666,14 @@
                       "CallExternalApiLogGroup"
                     ]
                   },
-                  "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug": {
+                  "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "CallExternalApiLambdaFunction"
                       },
-                      "CodeSha256": "Pmwfu4qS9L9ekXa2moJho299mBLEwwiAw1uf04d6NIQ="
+                      "CodeSha256": "7B2tiksd4roydbRmuhzYXJYQx/5+gfhPN1BeabQbOnY="
                     }
                   },
                   "MyexternalapiservicedevcallExternalApirule1EventBridgeRule": {
@@ -744,7 +748,7 @@
                   "CallExternalApiLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
+                      "Ref": "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME"
                     },
                     "Export": {
                       "Name": "sls-my-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
@@ -853,7 +857,7 @@
                 "memory": 1024,
                 "runtime": "nodejs18.x",
                 "vpc": {},
-                "versionLogicalId": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
+                "versionLogicalId": "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME"
               }
             }
           },
@@ -885,7 +889,8 @@
                 "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
                 "FIWARE_SERVICE": "smartcity_yaizu",
                 "API_KEY": "<REDACTED>",
-                "S3_BUCKET": "smartcity-yaizu-test"
+                "S3_BUCKET": "smartcity-yaizu-test",
+                "TZ": "Asia/Tokyo"
               },
               "iamRoleStatements": [
                 {
@@ -1068,7 +1073,7 @@
                         "S3Bucket": {
                           "Ref": "ServerlessDeploymentBucket"
                         },
-                        "S3Key": "serverless/my-external-api-service/dev/1724637600399-2024-08-26T02:00:00.399Z/my-external-api-service.zip"
+                        "S3Key": "serverless/my-external-api-service/dev/1724818555875-2024-08-28T04:15:55.875Z/my-external-api-service.zip"
                       },
                       "Handler": "src/handlers/apiHandler.handler",
                       "Runtime": "nodejs18.x",
@@ -1080,7 +1085,8 @@
                           "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
                           "FIWARE_SERVICE": "smartcity_yaizu",
                           "API_KEY": "<REDACTED>",
-                          "S3_BUCKET": "smartcity-yaizu-test"
+                          "S3_BUCKET": "smartcity-yaizu-test",
+                          "TZ": "Asia/Tokyo"
                         }
                       },
                       "Role": {
@@ -1094,14 +1100,14 @@
                       "CallExternalApiLogGroup"
                     ]
                   },
-                  "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug": {
+                  "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "CallExternalApiLambdaFunction"
                       },
-                      "CodeSha256": "Pmwfu4qS9L9ekXa2moJho299mBLEwwiAw1uf04d6NIQ="
+                      "CodeSha256": "7B2tiksd4roydbRmuhzYXJYQx/5+gfhPN1BeabQbOnY="
                     }
                   },
                   "MyexternalapiservicedevcallExternalApirule1EventBridgeRule": {
@@ -1176,7 +1182,7 @@
                   "CallExternalApiLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
+                      "Ref": "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME"
                     },
                     "Export": {
                       "Name": "sls-my-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
@@ -1285,7 +1291,7 @@
                 "memory": 1024,
                 "runtime": "nodejs18.x",
                 "vpc": {},
-                "versionLogicalId": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
+                "versionLogicalId": "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME"
               }
             }
           },
@@ -1318,7 +1324,8 @@
           "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
           "FIWARE_SERVICE": "smartcity_yaizu",
           "API_KEY": "<REDACTED>",
-          "S3_BUCKET": "smartcity-yaizu-test"
+          "S3_BUCKET": "smartcity-yaizu-test",
+          "TZ": "Asia/Tokyo"
         },
         "iamRoleStatements": [
           {
@@ -1501,7 +1508,7 @@
                   "S3Bucket": {
                     "Ref": "ServerlessDeploymentBucket"
                   },
-                  "S3Key": "serverless/my-external-api-service/dev/1724637600399-2024-08-26T02:00:00.399Z/my-external-api-service.zip"
+                  "S3Key": "serverless/my-external-api-service/dev/1724818555875-2024-08-28T04:15:55.875Z/my-external-api-service.zip"
                 },
                 "Handler": "src/handlers/apiHandler.handler",
                 "Runtime": "nodejs18.x",
@@ -1513,7 +1520,8 @@
                     "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
                     "FIWARE_SERVICE": "smartcity_yaizu",
                     "API_KEY": "<REDACTED>",
-                    "S3_BUCKET": "smartcity-yaizu-test"
+                    "S3_BUCKET": "smartcity-yaizu-test",
+                    "TZ": "Asia/Tokyo"
                   }
                 },
                 "Role": {
@@ -1527,14 +1535,14 @@
                 "CallExternalApiLogGroup"
               ]
             },
-            "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug": {
+            "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "CallExternalApiLambdaFunction"
                 },
-                "CodeSha256": "Pmwfu4qS9L9ekXa2moJho299mBLEwwiAw1uf04d6NIQ="
+                "CodeSha256": "7B2tiksd4roydbRmuhzYXJYQx/5+gfhPN1BeabQbOnY="
               }
             },
             "MyexternalapiservicedevcallExternalApirule1EventBridgeRule": {
@@ -1609,7 +1617,7 @@
             "CallExternalApiLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
+                "Ref": "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME"
               },
               "Export": {
                 "Name": "sls-my-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
@@ -1718,11 +1726,11 @@
           "memory": 1024,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "CallExternalApiLambdaVersionfqhbwHk3mtwAp41QX0gSsFXOipZa199RgnSBKJ0Jug"
+          "versionLogicalId": "CallExternalApiLambdaVersionFMSrqFhbLlm7TUeZ3sPTE1WutTIto03ef600T1ME"
         }
       }
     },
-    "serviceRawFile": "service: my-external-api-service\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  stage: ${opt:stage, 'dev'}\n  region: ap-northeast-1\n  environment:\n    EXTERNAL_API_URL: ${file(./config/${self:provider.stage}.json):EXTERNAL_API_URL}\n    FIWARE_SERVICE: ${file(./config/${self:provider.stage}.json):FIWARE_SERVICE}\n    API_KEY: ${file(./config/${self:provider.stage}.json):API_KEY}\n    S3_BUCKET: ${file(./config/${self:provider.stage}.json):S3_BUCKET}\n  iamRoleStatements:\n    - Effect: Allow\n      Action:\n        - s3:PutObject\n      Resource: arn:aws:s3:::${file(./config/${self:provider.stage}.json):S3_BUCKET}/*\n\n\nfunctions:\n  callExternalApi:\n    handler: src/handlers/apiHandler.handler\n    events:\n      - eventBridge:\n          schedule: rate(5 minutes)\n          enabled: true\n    timeout: 300\n",
+    "serviceRawFile": "service: my-external-api-service\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  stage: ${opt:stage, 'dev'}\n  region: ap-northeast-1\n  environment:\n    EXTERNAL_API_URL: ${file(./config/${self:provider.stage}.json):EXTERNAL_API_URL}\n    FIWARE_SERVICE: ${file(./config/${self:provider.stage}.json):FIWARE_SERVICE}\n    API_KEY: ${file(./config/${self:provider.stage}.json):API_KEY}\n    S3_BUCKET: ${file(./config/${self:provider.stage}.json):S3_BUCKET}\n    TZ: Asia/Tokyo\n  iamRoleStatements:\n    - Effect: Allow\n      Action:\n        - s3:PutObject\n      Resource: arn:aws:s3:::${file(./config/${self:provider.stage}.json):S3_BUCKET}/*\n\n\nfunctions:\n  callExternalApi:\n    handler: src/handlers/apiHandler.handler\n    events:\n      - eventBridge:\n          schedule: rate(5 minutes)\n          enabled: true\n    timeout: 300\n",
     "command": [
       "deploy"
     ],
@@ -1732,7 +1740,7 @@
     },
     "error": null,
     "params": {},
-    "machineId": "ab640c4a46eb265410d8fe2495cbae5c",
+    "machineId": "0d98cb98db5461099157b7beed5f5e45",
     "accessKeyV2": "<REDACTED>",
     "accessKeyV1": "<REDACTED>",
     "orgId": "2164d2a3-7ca1-4e3a-8d11-bd3de6069d9d",
@@ -1753,23 +1761,23 @@
     "serviceProviderAwsCredentials": "<REDACTED>",
     "serviceProviderAwsAccountId": "471112645570",
     "projectType": "framework",
-    "versionSf": "4.2.3",
+    "versionSf": "4.2.4",
     "serviceProviderAwsCfStackName": "my-external-api-service-dev",
     "integrations": {},
-    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-northeast-1:471112645570:stack/my-external-api-service-dev/d185e100-6345-11ef-9ec2-0afb0d423feb",
-    "serviceProviderAwsCfStackCreated": "2024-08-26T00:54:59.145Z",
-    "serviceProviderAwsCfStackUpdated": "2024-08-26T02:00:07.727Z",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:ap-northeast-1:471112645570:stack/my-external-api-service-dev/3b686570-64f4-11ef-95da-0a06f40ec551",
+    "serviceProviderAwsCfStackCreated": "2024-08-28T04:16:00.402Z",
+    "serviceProviderAwsCfStackUpdated": "2024-08-28T04:16:29.237Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "CallExternalApiLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:ap-northeast-1:471112645570:function:my-external-api-service-dev-callExternalApi:36",
+        "OutputValue": "arn:aws:lambda:ap-northeast-1:471112645570:function:my-external-api-service-dev-callExternalApi:39",
         "Description": "Current Lambda function version",
         "ExportName": "sls-my-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ServerlessDeploymentBucketName",
-        "OutputValue": "my-external-api-service-d-serverlessdeploymentbuck-qddyu9wzmytt",
+        "OutputValue": "my-external-api-service-d-serverlessdeploymentbuck-uqykbngnshlk",
         "ExportName": "sls-my-external-api-service-dev-ServerlessDeploymentBucketName"
       }
     ]

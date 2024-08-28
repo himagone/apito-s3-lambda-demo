@@ -1,65 +1,50 @@
 const apiTypes = [
   {
-    dataname: 'EvacuationInformationSediment',
+    dataname: 'Aed',
+    entityId: 'Aed'
+  },
+  {
+    dataname: 'DrinkingWaterTank',
+    entityId: 'DrinkingWaterTank'
+  },
+  {
+    dataname: 'PrecipitationGauge',
+    entityId: 'WeatherObserved'
+  },
+  {
+    dataname: 'SteepSlopeFailureSpecialVigilanceArea',
     entityId: 'Place'
   },
   {
-    dataname: 'EvacuationInformationFlood',
+    dataname: 'SteepSlopeFailureVigilanceArea',
     entityId: 'Place'
   },
   {
-    dataname: 'SewerFloodRiskArea',
-    entityId: 'Place'
+    dataname: 'CameraInformation',
+    entityId: 'CameraInformation'
   },
   {
-    dataname: 'DebrisFlowVigilanceArea',
-    entityId: 'Place'
+    dataname: 'StreamGauge',
+    entityId: 'WeatherObserved'
   },
   {
-    dataname: 'DebrisFlowSpecialVigilanceArea',
-    entityId: 'Place'
+    dataname: 'UnderpassInformation',
+    entityId: 'UnderpassInformation'
   },
   {
-    dataname: 'RestrictedTrafficAreaInformation',
-    entityId: 'RestrictedTrafficArea'
+    dataname: 'FirstAidStation',
+    entityId: 'MedicalFacility'
   },
   {
-    dataname: 'BroadcastRadioChildStation',
+    dataname: 'ReliefHospital',
+    entityId: 'MedicalFacility'
   },
   {
-    dataname: 'WeatherForecast',
-    entityId: 'WeatherForecast'
+    dataname: 'WeatherAlert',
+    entityId: 'WeatherAlert'
   },
   {
-    dataname: 'TsunamiEvacuationBuilding',
-    entityId: 'TsunamiEvacuationBuilding'
-  },
-  {
-    dataname: 'EvacuationSpace',
-    entityId: 'EvacuationSpace'
-  },
-  {
-    dataname: 'LandslidePreventionArea',
-    entityId: 'Place'
-  },
-  {
-    dataname: 'LandslideVigilanceArea',
-    entityId: 'Place'
-  },
-  {
-    dataname: 'TsunamiFloodRiskArea',
-    entityId: 'Place'
-  },
-  {
-    dataname: 'FloodRiskAreaMaxTime',
-    entityId: 'Place'
-  },
-  {
-    dataname: 'FloodRiskAreaMaxScale',
-    entityId: 'Place'
-  },
-  {
-    dataname: 'FloodRiskAreaPlanScale',
+    dataname: 'HouseCollapseRiskAreaRiverErosion',
     entityId: 'Place'
   },
   {
@@ -67,64 +52,100 @@ const apiTypes = [
     entityId: 'Place'
   },
   {
-    dataname: 'HouseCollapseRiskAreaRiverErosion',
+    dataname: 'FloodRiskAreaPlanScale',
     entityId: 'Place'
   },
   {
-    dataname: 'WeatherAlert',
-    entityId: 'WeatherAlert'
-  },
-  {
-    dataname: 'ReliefHospital',
-    entityId: 'MedicalFacility'
-  },
-  {
-    dataname: 'FirstAidStation',
-    entityId: 'MedicalFacility'
-  },
-  {
-    dataname: 'UnderpassInformation',
-    entityId: 'UnderpassInformation'
-  },
-  {
-    dataname: 'StreamGauge',
-    entityId: 'WeatherObserved'
-  },
-  {
-    dataname: 'CameraInformation',
-    entityId: 'CameraInformation'
-  },
-  {
-    dataname: 'SteepSlopeFailureVigilanceArea',
+    dataname: 'FloodRiskAreaMaxScale',
     entityId: 'Place'
   },
   {
-    dataname: 'SteepSlopeFailureSpecialVigilanceArea',
+    dataname: 'FloodRiskAreaMaxTime',
     entityId: 'Place'
   },
   {
-    dataname: 'PrecipitationGauge',
-    entityId: 'WeatherObserved'
+    dataname: 'TsunamiFloodRiskArea',
+    entityId: 'Place'
   },
   {
-    dataname: 'DrinkingWaterTank',
-    entityId: 'DrinkingWaterTank'
+    dataname: 'LandslideVigilanceArea',
+    entityId: 'Place'
   },
   {
-    dataname: 'Aed',
-    entityId: 'Aed'
+    dataname: 'LandslidePreventionArea',
+    entityId: 'Place'
   },
   {
-    dataname: 'SandbagStation',
-    entityId: 'SandbagStation'
+    dataname: 'EvacuationSpace',
+    entityId: 'EvacuationSpace'
+  },
+  {
+    dataname: 'TsunamiEvacuationBuilding',
+    entityId: 'TsunamiEvacuationBuilding'
+  },
+  {
+    dataname: 'FloodHistory',
+    entityId: 'Place'
   },
   {
     dataname: 'FloodPreventionWarehouse',
     entityId: 'Warehouse'
   },
   {
+    dataname: 'WeatherForecast',
+    entityId: 'WeatherForecast'
+  },
+  {
+    dataname: 'BroadcastRadioChildStation',
+    entityId: 'BroadcastRadioChildStation'
+  },
+  {
+    dataname: 'RestrictedTrafficAreaInformation',
+    entityId: 'RestrictedTrafficArea'
+  },
+  {
+    dataname: 'DebrisFlowSpecialVigilanceArea',
+    entityId: 'Place'
+  },
+  {
+    dataname: 'DebrisFlowVigilanceArea',
+    entityId: 'Place'
+  },
+  {
+    dataname: 'SandbagStation',
+    entityId: 'SandbagStation'
+  },
+    {
+    dataname: 'SewerFloodRiskArea',
+    entityId: 'Place'
+  },
+  {
+    dataname: 'FirePreventionWaterTank',
+    entityId: 'WaterSupplyForFire'
+  },
+  {
+    dataname: 'EvacuationInformationFlood',
+    entityId: 'Place'
+  },
+  {
+    dataname: 'EvacuationInformationSediment',
+    entityId: 'Place'
+  },
+  {
     dataname: 'EvacuationShelter',
     entityId: 'EvacuationShelter'
+  },
+  {
+    dataname: 'DisasterPreventionWarehouse',
+    entityId: 'Warehouse'
+  },
+  {
+    dataname: 'DisasterMail',
+    entityId: 'DisasterMail'
+  },
+  {
+    dataname: 'DisasterPreventionHeliport',
+    entityId: 'Heliport'
   }
 ];
 

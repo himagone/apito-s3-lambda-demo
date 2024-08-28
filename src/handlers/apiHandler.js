@@ -24,10 +24,10 @@ async function callApiAndSaveToS3(apiType){
   try {
     const response = await axios.get(requestURL, {
       headers,
-      timeout: 30000
+      timeout: 10000
     });
     const now = moment();
-    const fileName = `${apiType.dataname}/${now.format('YYYY-MM-DD')}/${now.format('HH-mm-ss')}.json`;
+    const fileName = `${apiType.dataname}/${now.format('YYYY-MM-DD')}/${now.format('HH-mm')}.json`;
 
     await s3.putObject({
       Bucket: S3_BUCKET,
@@ -44,23 +44,18 @@ async function callApiAndSaveToS3(apiType){
 }
 
 exports.handler = async (event) => {
-  const results = [];
-  const errors = [];
   for (const apiType of apiTypes) {
     try {
       console.log(`Processing apiType: ${apiType.dataname}`);
-      const result = await callApiAndSaveToS3(apiType);
-      results.push({ apiType: apiType.dataname, status: 'success', data: result });
+      await callApiAndSaveToS3(apiType);
     } catch (error) {
       console.error(`Error processing ${apiType.dataname}:`, error);
-      errors.push({ apiType: apiType.dataname, status: 'error', message: error.message });
+      throw error;
     }
   }
 
-  const response = {
-    statusCode: errors.length > 0 ? 500 : 200,
-    body: JSON.stringify({ results, errors })
+  return {
+    statusCode: 200,
+    body: JSON.stringify('Successfully processed all apiTypes.')
   };
-
-  return response;
 };
