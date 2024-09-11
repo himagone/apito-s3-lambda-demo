@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
 const s3 = new AWS.S3();
-const apiTypes = require('../apiTypes.js');
+const apiTypes = require('./apiTypes.js');
 
 const EXTERNAL_API_URL = process.env.EXTERNAL_API_URL;
 const FIWARE_SERVICE = process.env.FIWARE_SERVICE;
@@ -26,6 +26,15 @@ async function callApiAndSaveToS3(apiType){
       headers,
       timeout: 10000
     });
+    if (response.status !== 200) {
+      throw new Error(`API returned non-200 status code: ${response.status}`);
+    }else if(
+      !response.data ||
+      !Array.isArray(response.data) ||
+      response.data.length === 0
+    ){
+      throw new Error('API returned empty data.');
+    }
     const now = moment();
     const fileName = `${apiType.dataname}/${now.format('YYYY-MM-DD')}/${now.format('HH-mm')}.json`;
 

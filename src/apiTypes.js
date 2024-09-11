@@ -1,7 +1,15 @@
 const apiTypes = [
   {
+    dataname: 'CameraInformation',
+    entityId: 'CameraInformation'
+  },
+  {
     dataname: 'EvacuationShelter',
     entityId: 'EvacuationShelter'
+  },
+  {
+    dataname: 'PrecipitationGauge',
+    entityId: 'WeatherObserved'
   },
   {
     dataname: 'EvacuationInformationSediment',

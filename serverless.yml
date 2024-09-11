@@ -20,7 +20,7 @@ provider:
 
 functions:
   callExternalApi:
-    handler: src/handlers/apiHandler.handler
+    handler: src/apiHandler.handler
     events:
       - eventBridge:
           schedule: rate(5 minutes)
