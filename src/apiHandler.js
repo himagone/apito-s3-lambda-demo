@@ -4,11 +4,20 @@ const moment = require('moment');
 const { v4: uuidv4 } = require('uuid');
 const s3 = new AWS.S3();
 const apiTypes = require('./apiTypes.js');
+const dataFormatters = require('./dataFormatter.js');
 
 const EXTERNAL_API_URL = process.env.EXTERNAL_API_URL;
 const FIWARE_SERVICE = process.env.FIWARE_SERVICE;
 const API_KEY = process.env.API_KEY;
 const S3_BUCKET = process.env.S3_BUCKET;
+
+function formatData(data, dataname) {
+  const formatter = dataFormatters[dataname];
+  if (formatter) {
+    return data.map(formatter);
+  }
+  return data;
+}
 
 async function callApiAndSaveToS3(apiType){
   const requestTraceId = uuidv4();
@@ -38,10 +47,11 @@ async function callApiAndSaveToS3(apiType){
     const now = moment();
     const fileName = `${apiType.dataname}/${now.format('YYYY-MM-DD')}/${now.format('HH-mm')}.json`;
 
+    const formattedData = formatData(response.data, apiType.dataname);
     await s3.putObject({
       Bucket: S3_BUCKET,
       Key: fileName,
-      Body: JSON.stringify(response.data),
+      Body: JSON.stringify(formattedData),
       ContentType: 'application/json'
     }).promise();
     console.log(`Successfully saved ${apiType.dataname} to S3.`);

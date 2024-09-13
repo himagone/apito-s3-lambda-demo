@@ -1,4 +1,4 @@
-service: my-external-api-service
+service: drr-external-api-service
 
 provider:
   name: aws

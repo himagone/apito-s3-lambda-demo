@@ -2,79 +2,10 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "The AWS CloudFormation template for this Serverless application",
   "Resources": {
-    "ServerlessDeploymentBucket": {
-      "Type": "AWS::S3::Bucket",
-      "Properties": {
-        "BucketEncryption": {
-          "ServerSideEncryptionConfiguration": [
-            {
-              "ServerSideEncryptionByDefault": {
-                "SSEAlgorithm": "AES256"
-              }
-            }
-          ]
-        }
-      }
-    },
-    "ServerlessDeploymentBucketPolicy": {
-      "Type": "AWS::S3::BucketPolicy",
-      "Properties": {
-        "Bucket": {
-          "Ref": "ServerlessDeploymentBucket"
-        },
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "s3:*",
-              "Effect": "Deny",
-              "Principal": "*",
-              "Resource": [
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":s3:::",
-                      {
-                        "Ref": "ServerlessDeploymentBucket"
-                      },
-                      "/*"
-                    ]
-                  ]
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":s3:::",
-                      {
-                        "Ref": "ServerlessDeploymentBucket"
-                      }
-                    ]
-                  ]
-                }
-              ],
-              "Condition": {
-                "Bool": {
-                  "aws:SecureTransport": false
-                }
-              }
-            }
-          ]
-        }
-      }
-    },
     "CallExternalApiLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/my-external-api-service-dev-callExternalApi"
+        "LogGroupName": "/aws/lambda/drr-external-api-service-dev-callExternalApi"
       }
     },
     "IamRoleLambdaExecution": {
@@ -102,7 +33,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "my-external-api-service",
+                  "drr-external-api-service",
                   "dev",
                   "lambda"
                 ]
@@ -120,7 +51,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-external-api-service-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/drr-external-api-service-dev*:*"
                     }
                   ]
                 },
@@ -131,7 +62,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-external-api-service-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/drr-external-api-service-dev*:*:*"
                     }
                   ]
                 },
@@ -151,7 +82,7 @@
           "Fn::Join": [
             "-",
             [
-              "my-external-api-service",
+              "drr-external-api-service",
               "dev",
               {
                 "Ref": "AWS::Region"
@@ -166,14 +97,12 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "S3Key": "serverless/my-external-api-service/dev/1725859265756-2024-09-09T05:21:05.756Z/my-external-api-service.zip"
+          "S3Bucket": "serverless-framework-deployments-ap-northeast-1-8b3b5506-8d04",
+          "S3Key": "serverless/drr-external-api-service/dev/1726211234905-2024-09-13T07:07:14.905Z/drr-external-api-service.zip"
         },
         "Handler": "src/apiHandler.handler",
         "Runtime": "nodejs18.x",
-        "FunctionName": "my-external-api-service-dev-callExternalApi",
+        "FunctionName": "drr-external-api-service-dev-callExternalApi",
         "MemorySize": 1024,
         "Timeout": 300,
         "Environment": {
@@ -196,20 +125,20 @@
         "CallExternalApiLogGroup"
       ]
     },
-    "CallExternalApiLambdaVersion0C6hTlJdDA0hq8BKcxhVfKnXHBxnczJVglJZcEU": {
+    "CallExternalApiLambdaVersiondfX4wiAUA8lvBaCf5htO0lylncxJkSUnH62Y2lSNA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CallExternalApiLambdaFunction"
         },
-        "CodeSha256": "aufTvbMe0NYo4LjPAExV5lTcFO3xJ06UdE/FGEw0K9c="
+        "CodeSha256": "GU4QbFpqHurkvd/If+zq7nQBzF+hfd4m86r3krQfFTM="
       }
     },
-    "MyexternalapiservicedevcallExternalApirule1EventBridgeRule": {
+    "DrrexternalapiservicedevcallExternalApirule1EventBridgeRule": {
       "Type": "AWS::Events::Rule",
       "Properties": {
-        "Name": "my-external-api-service-dev-callExternalApi-rule-1",
+        "Name": "drr-external-api-service-dev-callExternalApi-rule-1",
         "ScheduleExpression": "rate(5 minutes)",
         "State": "ENABLED",
         "Targets": [
@@ -220,7 +149,7 @@
                 "Arn"
               ]
             },
-            "Id": "my-external-api-service-dev-callExternalApi-rule-1-target"
+            "Id": "drr-external-api-service-dev-callExternalApi-rule-1-target"
           }
         ]
       }
@@ -256,7 +185,7 @@
                   "/",
                   [
                     "rule",
-                    "my-external-api-service-dev-callExternalApi-rule-1"
+                    "drr-external-api-service-dev-callExternalApi-rule-1"
                   ]
                 ]
               }
@@ -268,20 +197,18 @@
   },
   "Outputs": {
     "ServerlessDeploymentBucketName": {
-      "Value": {
-        "Ref": "ServerlessDeploymentBucket"
-      },
+      "Value": "serverless-framework-deployments-ap-northeast-1-8b3b5506-8d04",
       "Export": {
-        "Name": "sls-my-external-api-service-dev-ServerlessDeploymentBucketName"
+        "Name": "sls-drr-external-api-service-dev-ServerlessDeploymentBucketName"
       }
     },
     "CallExternalApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CallExternalApiLambdaVersion0C6hTlJdDA0hq8BKcxhVfKnXHBxnczJVglJZcEU"
+        "Ref": "CallExternalApiLambdaVersiondfX4wiAUA8lvBaCf5htO0lylncxJkSUnH62Y2lSNA"
       },
       "Export": {
-        "Name": "sls-my-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
+        "Name": "sls-drr-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
       }
     }
   }
