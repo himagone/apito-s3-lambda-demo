@@ -20,9 +20,9 @@ provider:
 
 functions:
   callExternalApi:
-    handler: src/apiHandler.handler
+    handler: src/main.handler
     events:
       - eventBridge:
-          schedule: rate(5 minutes)
+          schedule: rate(1 minute)
           enabled: true
     timeout: 300
