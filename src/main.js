@@ -23,25 +23,18 @@ async function callApi(apiType) {
   const requestTraceId = uuidv4();
   const headers = {
     'fiware-service': FIWARE_SERVICE,
-    'fiware-servicepath': '/' + apiType.dataname,
+    'fiware-servicepath': `/${apiType.dataname}`,
     'x-request-trace-id': requestTraceId,
     'apikey': API_KEY
   };
   const param = new URLSearchParams({ type: apiType.entityId });
   const requestURL = `${EXTERNAL_API_URL}?${param.toString()}`;
-  console.log('Calling'+ requestURL);
   try {
     const response = await axios.get(requestURL, {
       headers,
-      timeout: 10000
+      timeout: 300
     });
-    if (response.status !== 200) {
-      throw new Error(`API returned non-200 status code: ${response.status}`);
-    }else if(
-      !response.data ||
-      !Array.isArray(response.data) ||
-      response.data.length === 0
-    ){
+    if (!response.data?.length) {
       throw new Error('API returned empty data.');
     }
     return response;
@@ -51,37 +44,44 @@ async function callApi(apiType) {
   }
 }
 
-async function saveToS3(responseData, apiType){
-    const now = moment();
-    const fileName = `${apiType.dataname}/${now.format('YYYY-MM-DD')}/${now.format('HH-mm')}.json`;
+async function saveToS3(responseData, apiType) {
+  const now = moment();
+  const fileName = `${apiType.dataname}/${now.format('YYYY-MM-DD')}/${now.format('HH-mm')}.json`;
 
-    const formattedData = formatData(responseData, apiType.dataname);
-    await s3.putObject({
-      Bucket: S3_BUCKET,
-      Key: fileName,
-      Body: JSON.stringify(formattedData),
-      ContentType: 'application/json'
-    }).promise();
-    console.log(`Successfully saved ${apiType.dataname} to S3.`);
+  const formattedData = formatData(responseData, apiType.dataname);
+  await s3.putObject({
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Body: JSON.stringify(formattedData),
+    ContentType: 'application/json',
+    Metadata: {
+      timestamp: now.toISOString()
+    }
+  }).promise();
+  console.log(`Successfully saved ${fileName} to S3.`);
 }
 
 exports.handler = async (event) => {
+  const responses = [];
   for (const apiType of apiTypes) {
     console.log(`Processing apiType: ${apiType.dataname}`);
     try {
       const response = await callApi(apiType);
-      if(!response.data){
+      if (!response.data) {
         throw new Error('API returned empty data.');
       }
       await saveToS3(response.data, apiType);
+      responses.push({ apiType: apiType.dataname, status: 'success',});
     } catch (error) {
       console.error(`Error processing ${apiType.dataname}:`, error);
-      throw error;
+      responses.push({ apiType: apiType.dataname, status: 'error', message: error.message });
     }
   }
-
+  const hasErrors = responses.some((r) => r.status === 'error');
   return {
-    statusCode: 200,
-    body: JSON.stringify('Successfully processed all apiTypes.')
+    statusCode: hasErrors ? 500 : 200,
+    body: JSON.stringify(responses),
   };
 };
+
+exports.formatData = formatData;

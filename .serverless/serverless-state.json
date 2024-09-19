@@ -13,7 +13,7 @@
         "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
         "FIWARE_SERVICE": "smartcity_yaizu",
         "API_KEY": "c54a2f8e-a32c-d9f6-7a64-693eb50f0e96",
-        "S3_BUCKET": "smartcity-yaizu-test",
+        "S3_BUCKET": "smartcity-yaizu",
         "TZ": "Asia/Tokyo"
       },
       "iamRoleStatements": [
@@ -22,7 +22,7 @@
           "Action": [
             "s3:PutObject"
           ],
-          "Resource": "arn:aws:s3:::smartcity-yaizu-test/*"
+          "Resource": "arn:aws:s3:::smartcity-yaizu/*"
         }
       ],
       "versionFunctions": true,
@@ -121,10 +121,10 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "S3Bucket": "serverless-framework-deployments-ap-northeast-1-8b3b5506-8d04",
-                "S3Key": "serverless/drr-external-api-service/dev/1726211234905-2024-09-13T07:07:14.905Z/drr-external-api-service.zip"
+                "S3Bucket": "serverless-framework-deployments-ap-northeast-1-76e2dffd-19eb",
+                "S3Key": "serverless/drr-external-api-service/dev/1726646990940-2024-09-18T08:09:50.940Z/drr-external-api-service.zip"
               },
-              "Handler": "src/apiHandler.handler",
+              "Handler": "src/main.handler",
               "Runtime": "nodejs18.x",
               "FunctionName": "drr-external-api-service-dev-callExternalApi",
               "MemorySize": 1024,
@@ -134,7 +134,7 @@
                   "EXTERNAL_API_URL": "https://api.smartcity-yaizu.jp/v2/entities/",
                   "FIWARE_SERVICE": "smartcity_yaizu",
                   "API_KEY": "c54a2f8e-a32c-d9f6-7a64-693eb50f0e96",
-                  "S3_BUCKET": "smartcity-yaizu-test",
+                  "S3_BUCKET": "smartcity-yaizu",
                   "TZ": "Asia/Tokyo"
                 }
               },
@@ -149,21 +149,21 @@
               "CallExternalApiLogGroup"
             ]
           },
-          "CallExternalApiLambdaVersiondfX4wiAUA8lvBaCf5htO0lylncxJkSUnH62Y2lSNA": {
+          "CallExternalApiLambdaVersioneVPOh6K9J8h8WR0wdMnmsuWLM4OsxOGcwWKIEMRBKw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CallExternalApiLambdaFunction"
               },
-              "CodeSha256": "GU4QbFpqHurkvd/If+zq7nQBzF+hfd4m86r3krQfFTM="
+              "CodeSha256": "5mkiVHhSErXwFOEStHOProMbXFZP/DLX4gmZ51c8as0="
             }
           },
           "DrrexternalapiservicedevcallExternalApirule1EventBridgeRule": {
             "Type": "AWS::Events::Rule",
             "Properties": {
               "Name": "drr-external-api-service-dev-callExternalApi-rule-1",
-              "ScheduleExpression": "rate(5 minutes)",
+              "ScheduleExpression": "rate(1 minute)",
               "State": "ENABLED",
               "Targets": [
                 {
@@ -218,7 +218,7 @@
         },
         "Outputs": {
           "ServerlessDeploymentBucketName": {
-            "Value": "serverless-framework-deployments-ap-northeast-1-8b3b5506-8d04",
+            "Value": "serverless-framework-deployments-ap-northeast-1-76e2dffd-19eb",
             "Export": {
               "Name": "sls-drr-external-api-service-dev-ServerlessDeploymentBucketName"
             }
@@ -226,7 +226,7 @@
           "CallExternalApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CallExternalApiLambdaVersiondfX4wiAUA8lvBaCf5htO0lylncxJkSUnH62Y2lSNA"
+              "Ref": "CallExternalApiLambdaVersioneVPOh6K9J8h8WR0wdMnmsuWLM4OsxOGcwWKIEMRBKw"
             },
             "Export": {
               "Name": "sls-drr-external-api-service-dev-CallExternalApiLambdaFunctionQualifiedArn"
@@ -239,11 +239,11 @@
     "pluginsData": {},
     "functions": {
       "callExternalApi": {
-        "handler": "src/apiHandler.handler",
+        "handler": "src/main.handler",
         "events": [
           {
             "eventBridge": {
-              "schedule": "rate(5 minutes)",
+              "schedule": "rate(1 minute)",
               "enabled": true
             }
           }
@@ -254,7 +254,7 @@
         "memory": 1024,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CallExternalApiLambdaVersiondfX4wiAUA8lvBaCf5htO0lylncxJkSUnH62Y2lSNA"
+        "versionLogicalId": "CallExternalApiLambdaVersioneVPOh6K9J8h8WR0wdMnmsuWLM4OsxOGcwWKIEMRBKw"
       }
     },
     "configValidationMode": "warn",
@@ -274,7 +274,7 @@
     "artifact": "/Users/user/Documents/git/apito-s3-lambda-demo/.serverless/drr-external-api-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/drr-external-api-service/dev/1726211234905-2024-09-13T07:07:14.905Z",
+    "artifactDirectoryName": "serverless/drr-external-api-service/dev/1726646990940-2024-09-18T08:09:50.940Z",
     "artifact": "drr-external-api-service.zip"
   }
 }

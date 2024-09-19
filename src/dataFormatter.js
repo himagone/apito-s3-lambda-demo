@@ -10,7 +10,7 @@ module.exports = dataFormatters = {
     Capacity: item.Capacity.value,
     Status: item.Status.value,
     ContactPointInformation: item.ContactPointInformation.value.ContactPointPhoneNumber.value,
-    Location:item.Location.value,
+    Location: item.Location.value,
     FacilityAddress: item.FacilityAddress.value.FullAddress.value,
     ReportingTime: item.ReportingTime.value
   }),
